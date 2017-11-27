@@ -4,9 +4,9 @@
 #include "Diccionario.h"
 
 
-Diccionario::Diccionario() : hojas(100000) {}
+Diccionario::Diccionario() : hojas(90000) {}
 
-Diccionario::Diccionario( std::string ruta ) : hojas(100000) {
+Diccionario::Diccionario( std::string ruta ) : hojas(80000) {
 
 
     std::ifstream fe;

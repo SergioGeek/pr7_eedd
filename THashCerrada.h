@@ -4,7 +4,7 @@
 
 #include <vector>
 #include <climits>
-#define intentos 5
+#define intentos 10
 
 
 // Funciones sobre numeros primos
@@ -29,6 +29,7 @@ private:
     unsigned long tamaf;
     unsigned long tamal;
     std::vector <Entrada<T>> tabla;
+    int noInsertado;
 public:
 
     bool esprimo(unsigned n) {
@@ -45,7 +46,7 @@ public:
         }
         return i;
     }
-    THashCerrada(unsigned long tam) : tamaf(tam), tabla(tamaf, Entrada<T>()), tamal(0) {};
+    THashCerrada(unsigned long tam) : tamaf(tam), tabla(tamaf, Entrada<T>()), tamal(0), noInsertado (0) {};
 
     //  la función de dispersión es cuadratica
     unsigned fDispersion(unsigned long clave, int i) {
@@ -81,6 +82,7 @@ public:
                 ++i;   //No he dado aun con una posicion libre
         }
         if (!encontrado) {
+            this->noInsertado++;
             return false;
         }
         tamal++;
@@ -97,10 +99,10 @@ public:
                 //  cout << std::endl << "Borrado con " << i << " intentos." << std::endl;
                 tabla[y].l1 = false;
                 resultado = tabla[y].dato;
-                encontrado = true;   //lo encontre lo borro y salgo del bucle
+                encontrado = true;   
                 tamal--;
             } else
-                ++i;   //No he dado aun con su posicion
+                ++i;
         }
         return encontrado;
     }
@@ -113,11 +115,11 @@ public:
             y = fDispersion2(clave, i);
             if ((tabla[y].l1 && !tabla[y].l2) && tabla[y].dato == resultado) {
 
-                //  cout << std::endl << "Buscado con " << i << " intentos." << std::endl;
-                encontrado = true;   //lo encontre y salgo del bucle
+
+                encontrado = true;
                 resultado = tabla[y].dato;
             } else
-                ++i;   //No he dado aun con su posicion
+                ++i;
         }
         return encontrado;
     }
@@ -125,6 +127,10 @@ public:
     //funciones publicas
     unsigned tamaTabla() {
         return tamal;
+    }
+
+    unsigned noInsert() {
+        return this->noInsertado;
     }
 
     float factorCarga() {

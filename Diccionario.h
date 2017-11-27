@@ -45,6 +45,12 @@ public:
     std::list < std::string > sacaSucesoresDe ( const std::string& p );
     Palabra* inserta ( const std::string& palabra );
 
+    unsigned tama () { return this->hojas.tamaTabla();};
+
+    unsigned nI () { return this->hojas.noInsert();};
+
+    float factor () { return this->hojas.factorCarga();};
+
     //Destructor
     virtual ~Diccionario();
 
