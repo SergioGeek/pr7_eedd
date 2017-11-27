@@ -5,9 +5,11 @@
 
 
 #include "Palabra.h"
+#include "THashCerrada.h"
 #include <fstream>
 #include <vector>
 #include <map>
+
 
 
 class Diccionario {
@@ -16,12 +18,21 @@ class Diccionario {
 private:
 
 
-    std::map < std::string, Palabra > hojas;
+    THashCerrada < Palabra > hojas;
+    //std::map < std::string, Palabra > hojas;
 
 
 
 
 public:
+
+    unsigned long djb2(const unsigned char *str){
+        unsigned long hash = 5381;
+        int c;
+        while ((c = *str++))
+            hash = ((hash<<5)+hash)+c;
+        return hash;
+    }
 
     //Constructores
     Diccionario ();
