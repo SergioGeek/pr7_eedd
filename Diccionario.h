@@ -36,7 +36,7 @@ public:
 
     //Constructores
     Diccionario ();
-    Diccionario ( std::string ruta );
+    Diccionario ( std::string ruta, long int tamm );
     Diccionario ( const Diccionario& orig );
 
     //Operaciones
@@ -47,7 +47,7 @@ public:
 
     unsigned tama () { return this->hojas.tamaTabla();};
 
-    unsigned nI () { return this->hojas.noInsert();};
+    unsigned nI () { return this->hojas.getSumaColisiones();};
 
     float factor () { return this->hojas.factorCarga();};
 

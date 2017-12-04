@@ -6,7 +6,7 @@
 
 Diccionario::Diccionario() : hojas(90000) {}
 
-Diccionario::Diccionario( std::string ruta ) : hojas(80000) {
+Diccionario::Diccionario( std::string ruta, long int tamm ) : hojas(tamm) {
 
 
     std::ifstream fe;
@@ -48,10 +48,9 @@ Palabra* Diccionario::busca ( const std::string &termino ) {
 
     Palabra p (termino);
 
-    if (this->hojas.buscar(djb2((unsigned char*)termino.c_str()), p ))
-        return &p;
-    else
-        return 0;
+
+    return this->hojas.buscar(djb2((unsigned char*)termino.c_str()), p );
+
 }
 
 
@@ -79,8 +78,8 @@ Palabra* Diccionario::inserta ( const std::string& palabra ) {
 
     Palabra p ( palabra );
 
-    if ( this->hojas.insertar(djb2((unsigned char*)palabra.c_str()), p ) )
-        return &p;
+    if (this->hojas.insertar(djb2((unsigned char*)palabra.c_str()), p ) )
+        return this->hojas.buscar(djb2((unsigned char*)palabra.c_str()), p );
 
     return 0;
 }
