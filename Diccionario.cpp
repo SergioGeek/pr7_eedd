@@ -4,7 +4,7 @@
 #include "Diccionario.h"
 
 
-Diccionario::Diccionario() : hojas(90000) {}
+Diccionario::Diccionario() : hojas(0) {}
 
 Diccionario::Diccionario( std::string ruta, long int tamm ) : hojas(tamm) {
 

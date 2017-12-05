@@ -21,18 +21,18 @@ private:
     THashCerrada < Palabra > hojas;
     //std::map < std::string, Palabra > hojas;
 
-
-
-
-public:
-
-    unsigned long djb2(const unsigned char *str){
+    static inline unsigned long djb2(const unsigned char *str){
         unsigned long hash = 5381;
         int c;
         while ((c = *str++))
             hash = ((hash<<5)+hash)+c;
         return hash;
     }
+
+
+
+public:
+
 
     //Constructores
     Diccionario ();
@@ -50,6 +50,7 @@ public:
     unsigned nI () { return this->hojas.getSumaColisiones();};
 
     float factor () { return this->hojas.factorCarga();};
+    float maxCol () { return this->hojas.getMaxColisiones();};
 
     //Destructor
     virtual ~Diccionario();
